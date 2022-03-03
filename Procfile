@@ -1,1 +1,1 @@
-web: gunicorn tradecars.wsgi
+web: gunicorn carpalace.wsgi
