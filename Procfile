@@ -1,1 +1,1 @@
-web: gunicorn realblog.wsgi
+web: gunicorn tradecars.wsgi
