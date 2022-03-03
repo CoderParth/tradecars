@@ -1,0 +1,26 @@
+{% extends 'ads/base.html' %}
+
+{% block content %}
+	{% for car in cars%}
+
+
+	<article class="media content-section">
+		<img class="rounded-circle article-img" src="{{ car.seller.profile.profile_pic.url }}" alt="">
+		<div class="media-body">
+		  <div class="article-metadata">
+			<a class="mr-2" href="/profile/{{car.seller.profile.id}}">{{ car.seller }}</a>
+			<small class="text-muted">{{ car.date_posted|date:"P d M Y (e)" }}</small>
+
+
+		  </div>
+		  <h2><a class="article-title" href="/car/{{ car.id }}">{{ car.name }}</a></h2>
+		  <small class="text-danger">Price: ${{ car.price}}</small>
+
+		  <img class="img-fluid" src="{{ car.photo.url }}">
+		</div>
+	  </article>
+	{% endfor %}
+
+
+
+{% endblock content%}

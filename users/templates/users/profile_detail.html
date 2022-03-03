@@ -1,0 +1,37 @@
+{% extends "ads/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ object.profile_pic.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ object.user }}</h2>
+          {% if object.user == user %}
+          <a href="{% url 'profile_edit' %}" class="btn btn-info" role="button"> Edit </a>
+			    {% endif %}
+          <p class="text-secondary"> Joined on {{ object.date_joined | date:"d M Y" }}</p>
+          <p class="text-secondary">{{ object.email }}</p>
+          <h3> About Me </h3>
+          <p class="text-secondary">{{ object.about_me }}</p>
+
+            <h2 class="mr-auto"> Posts </h2>
+            {% for u in object.user.car_set.all %}
+              <div class="card-group">
+              <div class="card bg-light mb-3" style="width: 18rem;">
+                <img class="card-img-top" src="{{ u.photo.url }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ u.name }}</h5>
+                  <p class="card-text">{{ u.content }}</p>
+                  <a href="/car/{{ u.id }}" class="btn btn-primary"> Read More</a>
+                </div>
+              </div>
+            </div>
+             {% endfor %}
+
+        </div>
+
+      </div>
+      <!-- FORM HERE -->
+
+    </div>
+{% endblock content %}

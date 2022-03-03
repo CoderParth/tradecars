@@ -1,0 +1,48 @@
+{% extends "ads/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.profile_pic.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          {% if user == user %}
+          <a href="{% url 'profile_edit' %}" class="btn btn-info" role="button"> Edit </a>
+			    {% endif %}
+
+          <p class="text-secondary"> Joined on {{ user.profile.date_joined | date:"d M Y" }}</p>
+          <p class="text-secondary">{{ user.email }}</p>
+          <h3> About Me </h3>
+          <p class="text-secondary">{{ user.profile.about_me }}</p>
+
+            <h2 class="mr-auto"> Posts </h2>
+            {% for u in user.car_set.all %}
+
+             <!-- <div class="card-deck">
+              <div class="card">
+                <img class="card-img-top" src="{{ u.photo.url }}" alt="Car image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ u.name }}</h5>
+                  <p class="card-text"> {{ u.content }}.</p>
+                  <p class="card-text"><small class="text-muted">Last updated {{ u.date_posted }}</small></p>
+                </div>
+              </div> -->
+              <div class="card-group">
+              <div class="card bg-light mb-3" style="width: 18rem;">
+                <img class="card-img-top" src="{{ u.photo.url }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ u.name }}</h5>
+                  <p class="card-text">{{ u.content }}</p>
+                  <a href="/car/{{ u.id }}" class="btn btn-primary"> Read More</a>
+                </div>
+              </div>
+            </div>
+             {% endfor %}
+
+        </div>
+
+      </div>
+      <!-- FORM HERE -->
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'ads/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4"> Confirm Delete your Post? </legend>
+			<h2> Are you sure you want to delete? {{ object.name }}</h2>
+		</fieldset>
+		<button class="btn btn-outline-danger" type="submit"> Delete </button>
+		<a href="{% url 'car-detail' object.id%}" class="btn btn-outline-secondary ml-2"> Cancel </a>
+	</form>
+
+</div>
+{% endblock %}

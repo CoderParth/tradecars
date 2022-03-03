@@ -1,0 +1,14 @@
+{% extends 'ads/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4"> Post your car | Sell it online  </legend>
+			{{ form|crispy }}
+		</fieldset>
+		<button class="btn btn-outline-info" type="submit"> Post </button>
+	</form>
+</div>
+{% endblock %}
